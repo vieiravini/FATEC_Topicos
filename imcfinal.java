@@ -20,7 +20,7 @@ class Imc{
         return p/(a*a);
     }
 
-    static String resultadoIMC(float imc)
+    public String resultadoIMC(float imc)
    {
       String result;
       if (imc <= 18.5)
