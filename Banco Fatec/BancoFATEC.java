@@ -62,7 +62,9 @@ class ContaPoupanca {
 class ContaCorrente {
 	String nome_titular;
 	String numero_conta;
-	double saldo;
+    double saldo;
+    double saldo_negativo = -500;
+    
 
 	public ContaCorrente() {
 		this.nome_titular = "";
@@ -82,8 +84,19 @@ class ContaCorrente {
 	}
 	
 	public void saque(double valor) {
-		System.out.printf("Valor sacado =  %f \n", valor);
-		this.saldo = this.saldo - valor;
+        double teste_valor = valor;
+        double teste_saldo = this.saldo;
+        double teste_negativo = 0;
+
+        teste_negativo = teste_saldo - teste_valor;
+
+        if(teste_negativo < this.saldo_negativo){
+            System.out.println("Nao foi possivel sacar");
+        }else{
+            this.saldo = this.saldo - valor;
+            System.out.printf("Valor sacado =  %f \n", valor);
+        }
+
 	}
 	
 	public double getSaldo() {
