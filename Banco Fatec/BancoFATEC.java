@@ -113,8 +113,8 @@ class ContaCorrente {
 }
 
 class CarteiraClientes {
-	ArrayList<ContaPoupanca> poupadores = new ArrayList<>();
-	ArrayList<ContaCorrente> correntistas = new ArrayList<>();
+	static ArrayList<ContaPoupanca> poupadores = new ArrayList<>();
+	static ArrayList<ContaCorrente> correntistas = new ArrayList<>();
 	
 	public CarteiraClientes() {
 		
@@ -123,10 +123,10 @@ class CarteiraClientes {
 	public void criarConta(String nome, String numero_conta, int tipo, double valor) {
 		if (tipo == 0) {
 			ContaPoupanca nova_poupanca = new ContaPoupanca(nome, numero_conta, valor);
-			this.poupadores.add(nova_poupanca);
+			CarteiraClientes.poupadores.add(nova_poupanca);
 		} else {
 			ContaCorrente nova_conta = new ContaCorrente(nome, numero_conta, valor);
-			this.correntistas.add(nova_conta);
+			CarteiraClientes.correntistas.add(nova_conta);
 		}
 		System.out.println(correntistas);
 		System.out.println(poupadores);
@@ -158,7 +158,7 @@ class CarteiraClientes {
 	
 	public ContaCorrente encontrar_conta_corrente(String numero_conta) {
 		ContaCorrente conta_encontrada = null;
-		for ( int x = 0; x < this.correntistas.size(); x++) {
+		for ( int x = 0; x < CarteiraClientes.correntistas.size(); x++) {
 			if (Objects.equals(correntistas.get(x).getNumeroConta(), numero_conta)) {
 				conta_encontrada = correntistas.get(x);
 				System.out.println("\n\n===================================");
@@ -175,7 +175,7 @@ class CarteiraClientes {
 
 	public ContaPoupanca encontrar_conta_poupanca(String numero_conta) {
         ContaPoupanca conta_p_encontrada = null;
-        for ( int x = 0; x < this.poupadores.size(); x++) {
+        for ( int x = 0; x < CarteiraClientes.poupadores.size(); x++) {
 			if (Objects.equals(poupadores.get(x).getNumeroConta(), numero_conta)) {
 				conta_p_encontrada = poupadores.get(x);
 				System.out.println("\n\n===================================");
@@ -202,6 +202,9 @@ public class BancoFATEC {
 		String numero_conta = "0";
 		int opcao = 10;
 		do {
+			System.out.println("");	
+			System.out.println("");	
+			System.out.println("");	
 			System.out.println("Banco FATEC");	
 			System.out.println("============");	
 			System.out.println("1.\t Criar uma conta");	
@@ -230,45 +233,92 @@ public class BancoFATEC {
 			}
 
 			if (opcao == 2) {
+				if(CarteiraClientes.correntistas.isEmpty() == true){
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("Nenhuma conta encontrada.");
+					System.out.println("Crie uma para começar a usar o programa.");
+				}else{
 				System.out.println("Digite o número da conta corrente: ");	
 				numero_conta = console.readLine();
 				System.out.println("Digite o valor a se depositar: ");	
 				movimentacao = input.nextDouble();
 				agencia_Araras.depositar(numero_conta, 1, movimentacao);
+				}
 			}
 
 			if (opcao == 3) {
+				if(CarteiraClientes.correntistas.isEmpty() == true){
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("Nenhuma conta encontrada.");
+					System.out.println("Crie uma para começar a usar o programa.");
+				}else{
 				System.out.println("Digite o número da conta corrente: ");	
 				numero_conta = console.readLine();
 				System.out.println("Digite o valor que deseja sacar: ");	
 				movimentacao = input.nextDouble();
 				agencia_Araras.sacar(numero_conta, 1, movimentacao);
+				}
 			}
 			
 			if (opcao == 4) {
+				if(CarteiraClientes.correntistas.isEmpty() == true){
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("Nenhuma conta encontrada.");
+					System.out.println("Crie uma para começar a usar o programa.");
+				}else{
 				System.out.println("Digite o número da conta: ");	
 				numero_conta = console.readLine();
 				agencia_Araras.encontrar_conta_corrente(numero_conta);
+				}
 			}
 			
 			if (opcao == 5) {
+				if(CarteiraClientes.poupadores.isEmpty() == true){
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("Nenhuma conta encontrada.");
+					System.out.println("Crie uma para começar a usar o programa.");
+				}else{
 				System.out.println("Digite o número da conta poupanca: ");	
 				numero_conta = console.readLine();
 				System.out.println("Digite o valor a se depositar: ");	
 				movimentacao = input.nextDouble();
 				agencia_Araras.depositar(numero_conta, 0, movimentacao);
+				}
 			}
 			if (opcao == 6) {
+				if(CarteiraClientes.poupadores.isEmpty() == true){
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("Nenhuma conta encontrada.");
+					System.out.println("Crie uma para começar a usar o programa.");
+				}else{
 				System.out.println("Digite o número da conta poupanca: ");	
 				numero_conta = console.readLine();
 				System.out.println("Digite o valor a se sacar: ");	
 				movimentacao = input.nextDouble();
 				agencia_Araras.sacar(numero_conta, 0, movimentacao);
+				}
 			}
 			if (opcao == 7) {
+				if(CarteiraClientes.poupadores.isEmpty() == true){
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("");	
+					System.out.println("Nenhuma conta encontrada.");
+					System.out.println("Crie uma para começar a usar o programa.");
+				}else{
                 System.out.println("Digite o número da conta: ");	
 				numero_conta = console.readLine();
-				agencia_Araras.encontrar_conta_poupanca(numero_conta);			}
+				agencia_Araras.encontrar_conta_poupanca(numero_conta);			}}
 		} while ( opcao != 0 );
 		
 		System.out.println("****************************************");
